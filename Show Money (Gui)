@@ -1,3 +1,7 @@
+-- Lavet af EliasGamingDKYT
+
+-- Put Script I Et Text-Label (Gui) --
+
 while wait() do
 	local player = game.Players.LocalPlayer
 	script.Parent.Text = "$"..player:WaitForChild("leaderstats"):FindFirstChild("Money").Value
