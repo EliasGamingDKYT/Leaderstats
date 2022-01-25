@@ -1,0 +1,46 @@
+local ServerStorage = game:GetService("ServerStorage")
+local DataStore = game:GetService("DataStoreService"):GetDataStore("PlayerSave3")
+
+game.Players.PlayerAdded:Connect(function(player)
+	
+	local leaderstats =Instance.new("Folder")
+	leaderstats.Name = "leaderstats"
+	leaderstats.Parent = player
+	
+	local Strength = Instance.new("NumberValue")
+	Strength.Name = "Strength"
+	Strength.Parent = leaderstats
+	
+	local Rebirths = Instance.new("NumberValue")
+	Rebirths.Name = "Rebirths"
+	Rebirths.Parent = leaderstats
+	
+	local DataFolder = Instance.new("Folder")
+	DataFolder.Name = player.Name
+	DataFolder.Parent = ServerStorage.RemoteData
+	
+	local Debounce = Instance.new("BoolValue")
+	Debounce.Name = "Debounce"
+	Debounce.Parent = DataFolder
+	
+	local strengthData, rebirthsData
+	
+	local success,errormessage = pcall(function()
+		strengthData = DataStore:GetAsync("strength-"..player.UserId)
+		rebirthsData = DataStore:GetAsync("rebirths-"..player.UserId)
+	end)
+	
+	if success then
+		if strengthData then
+			Strength.Value = strengthData
+			Rebirths.Value = rebirthsData
+		end
+	end
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+	local success,errormessage = pcall(function()
+		DataStore:SetAsync("strength-"..player.UserId,player.leaderstats.Strength.Value)
+		DataStore:SetAsync("rebirths-"..player.UserId,player.leaderstats.Rebirths.Value)
+	end)
+end)
