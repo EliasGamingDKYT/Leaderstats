@@ -1,0 +1,33 @@
+-- Lavet Af EliasGamingDKYT
+
+-- Put Script i "StarterPlayerScripts"
+
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+
+local remoteEvent = ReplicatedStorage:WaitForChild('RemoteEvent')
+
+
+
+textColor = BrickColor.new('Lime green')
+
+
+
+local function welcome(playerName)
+
+    game.StarterGui:SetCore('ChatMakeSystemMessage', {
+
+        Text = playerName..' has joined';
+
+        Font = Enum.Font.SourceSansBold;
+
+        Color = textColor.Color;
+
+        FontSize = Enum.FontSize.Size24;
+
+    })
+
+end
+
+
+
+remoteEvent.OnClientEvent:Connect(welcome)
