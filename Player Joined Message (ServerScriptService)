@@ -1,0 +1,19 @@
+-- Lavet Af EliasGamingDKYT
+
+-- Put Script i ServerScriptService
+-- HUSK! at lave et "RemoteEvent" i "ReplicatedStorage" Der hedder "PlayerJoinedEvent"
+
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+
+local remoteEvent = ReplicatedStorage:WaitForChild('PlayerJoinedEvent')
+
+
+local function onPlayerJoin(player)
+
+    remoteEvent:FireAllClients(player.Name)
+
+end
+
+
+
+game.Players.PlayerAdded:Connect(onPlayerJoin)
