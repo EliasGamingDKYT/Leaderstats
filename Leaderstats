@@ -1,3 +1,7 @@
+-- Lavet af EliasGamingDKYT
+
+-- Put Script I "ServerScriptSerice" --
+
 local ServerStorage = game:GetService("ServerStorage")
 local DataStore = game:GetService("DataStoreService"):GetDataStore("PlayerSave3")
 
